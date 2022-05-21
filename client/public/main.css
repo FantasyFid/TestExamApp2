@@ -1,0 +1,109 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    background-color: rgb(238, 231, 231);
+    font-family: sans-serif;
+}
+/* Cтили для полей ввода */
+label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+input[type="text"] {
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 0px 10px;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+}
+input[type="text"]:focus {
+    outline: none;
+}
+.react-date-picker {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 220px;
+    height: 30px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 25px;
+    font-weight: 700;
+}
+.react-date-picker__wrapper {
+    width: 220px;
+    height: 30px;
+    border-radius: 10px;
+}
+.react-date-picker__inputGroup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Стили для таблицы */
+table {
+    border: 2px solid black;
+    min-width: 300px;
+    border-spacing: 0;
+  }
+   
+th {
+    height: 10px;
+    border: 1px black solid;
+    border-bottom: 2px black solid;
+    color: rgb(23, 50, 204);
+    
+}
+td {
+    text-align: center;
+    border: 1px solid black;
+}
+tr {
+    border: 1px solid black;
+}
+/* Позиционирование блоков с вводом */
+.student-input, .student-delete, .student-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    width: 500px;
+    border-radius: 30px;
+    color:white;
+}
+/* Стили блоков с вводом */
+.student-input {
+    background-color: rgb(36, 36, 117);
+}
+.student-delete {
+    background-color: rgb(218, 42, 42);
+}
+.student-list {
+    background-color: rgb(19, 170, 100);
+}
+.student-list button{
+    margin-bottom: 10px;
+}
+/* Стили для кнопок */
+.fetch-button {
+    width: 150px;
+    height: 30px;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+}
+.fetch-button:hover {
+    cursor: pointer;
+}
