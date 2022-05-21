@@ -40,15 +40,15 @@ function StudentInput(props) {
                 },
                 body: JSON.stringify(studentObject)
             })
-            .catch(() => {
-                setAlertingInformation(['An error occured']);
-                setTimeout(10000, () => setAlertingInformation([]));  
+            .catch((err) => {
+                setAlertingInformation(['An error occured: ' + err]);
+                setTimeout(1000, () => setAlertingInformation([]));  
             });
             setAlertingInformation(alertingInfo);
         }
     }
     return(
-        <form onSubmit={handleSubmit} className="student-input">
+        <form onSubmit={handleSubmit} className="input-block">
             <h3>Add new student</h3>
             <label>
                 <div>Enter your name:</div>

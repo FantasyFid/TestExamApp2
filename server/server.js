@@ -105,6 +105,19 @@ app.get("/update", function (request, response) {
     }
 });
 
+app.post("/delete", jsonParser, function (request, response) {
+    console.log(request.body);
+    let userId = request.body.id;
+    if(!request.body) return response.sendStatus(400);
+    try {
+        deleteStudent(maindb, userId);
+    } catch(err) {
+        console.log("Getting error " + err);
+        response.sendStatus(400);
+    }
+    response.sendStatus(200);
+});
+
 app.listen(5000, () => {
     console.log(`Server running at port ${5000}`);
  });

@@ -1,15 +1,16 @@
 
 import { useState, useEffect } from 'react';
-import info from './info'
+import info from './info';
 
 function StudentsList(props) {
-    const [data, setData] = useState([]);
 
     const formatDate = function (dateStr) {
         let date = new Date(dateStr);
         let formated = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
         return formated;
     }
+
+    const [data, setData] = useState([]);
 
     const handleClick = function() {
         fetch(info.server + 'update')
@@ -19,7 +20,7 @@ function StudentsList(props) {
     useEffect(handleClick, []);
 
     return(
-        <div className='students-list'>
+        <div className='input-block'>
             <h3>Students List</h3>
             <button onClick={handleClick} >Update users</button>
             <table>
