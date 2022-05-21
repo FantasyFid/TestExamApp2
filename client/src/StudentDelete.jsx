@@ -24,13 +24,14 @@ function StudentDelete(props) {
     }
 
     return(
-        <form className='input-block' onSubmit={handleSubmit}>
+        <form className='student-delete' onSubmit={handleSubmit}>
+            <h3>Delete student</h3>
             <label>
                 <div>Enter the ID of student you want to delete: </div>
                 <input type="text" value={id} onChange={(e) => setID(e.target.value)}/>
             </label>
             <lable>
-                <input type="submit" value="Delete student"/>
+                <input type="submit" value="Delete student" className='fetch-button'/>
             </lable>
             <ul>
                 {

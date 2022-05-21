@@ -11,7 +11,6 @@ function StudentInput(props) {
     const [alertingInformation, setAlertingInformation] = useState([]);
 
     function handleDateChange(date) {
-        console.log('new date is' + date);
         setDate(date);
     }
     function handleSubmit(e) {
@@ -48,7 +47,7 @@ function StudentInput(props) {
         }
     }
     return(
-        <form onSubmit={handleSubmit} className="input-block">
+        <form onSubmit={handleSubmit} className="student-input">
             <h3>Add new student</h3>
             <label>
                 <div>Enter your name:</div>
@@ -64,14 +63,14 @@ function StudentInput(props) {
             </label> 
             <label>
                 <div>Enter your Date of Birth:</div>
-                <DatePicker onChange={handleDateChange} value={date} />
+                <DatePicker onChange={handleDateChange} value={date} disableCalendar={true} classList="date-picker"/>
             </label> 
             <label>
                 <div>Enter your group:</div>
                 <input type="text" value={group} onChange={(e) => setGroup(e.target.value)}/>
             </label> 
             <lable>
-                <input type="submit" value="Add student"/>
+                <input type="submit" value="Add student" className='fetch-button'/>
             </lable>
             <ul>
                 {

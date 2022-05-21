@@ -6,7 +6,7 @@ function StudentsList(props) {
 
     const formatDate = function (dateStr) {
         let date = new Date(dateStr);
-        let formated = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
+        let formated = date.getDate() + '-' + Number(date.getMonth() + 1) + '-' + date.getFullYear();
         return formated;
     }
 
@@ -20,9 +20,9 @@ function StudentsList(props) {
     useEffect(handleClick, []);
 
     return(
-        <div className='input-block'>
+        <div className='student-list'>
             <h3>Students List</h3>
-            <button onClick={handleClick} >Update users</button>
+            <button onClick={handleClick} className='fetch-button'>Update users</button>
             <table>
                 <tr>
                     <th>ID</th>
