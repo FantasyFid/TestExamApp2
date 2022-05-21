@@ -48,7 +48,7 @@ function StudentInput(props) {
         }
     }
     return(
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="student-input">
             <h3>Add new student</h3>
             <label>
                 <div>Enter your name:</div>

@@ -94,6 +94,17 @@ app.post("/insert", jsonParser, function (request, response) {
     response.sendStatus(200);
 });
 
+app.get("/update", function (request, response) {
+    try {
+        selectAllStudents(maindb, (result) => {
+            console.log(result);
+            response.json(result);
+        });
+    } catch(err) {
+        console.log("Getting error " + err);
+    }
+});
+
 app.listen(5000, () => {
     console.log(`Server running at port ${5000}`);
  });
