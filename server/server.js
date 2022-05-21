@@ -1,6 +1,7 @@
 
 const express = require("express");
 const sqlite3 = require('sqlite3');
+const cors = require("cors");
 
 function createConnection() {
     let db = new sqlite3.Database('maindb.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
@@ -47,10 +48,9 @@ function insertStudent(db, name, sername, patronymic, date_of_birth, group) {
     values ('${name}', '${sername}', '${patronymic}', '${date_of_birth}', '${group}');
     `, (err) => {
         if (err) {
-            console.log("Getting error " + err);
+            throw err;
         }
-    }
-    );
+    });
 }
 
 function deleteStudent(db, id) {
@@ -78,13 +78,22 @@ function selectAllStudents(db, callback) {
 
 const app = express();
 const maindb = createConnection();
+const jsonParser = express.json();
+app.use(cors());
 
-insertStudent(maindb, 'Andrey', 'Sergeev', 'Dmitrievich', '19-10-2002', 'UPM-211');
-insertStudent(maindb, 'Dmitri', 'Sergeev', 'Vycheslavovich', '27-2-1973', 'MPU-422');
-selectAllStudents(maindb, (result) => console.log(result));
-
-app.get("/", function(request, response){
-    response.send("<h2>Привет Express!</h2>");
+app.post("/insert", jsonParser, function (request, response) {
+    console.log(request.body);
+    let user = request.body;
+    if(!request.body) return response.sendStatus(400);
+    try {
+        insertStudent(maindb,user.Name, user.Sername, user.Patronymic, user.Date, user.Group);
+    } catch(err) {
+        console.log("Getting error " + err);
+        response.sendStatus(400);
+    }
+    response.sendStatus(200);
 });
 
-app.listen(3000);
+app.listen(5000, () => {
+    console.log(`Server running at port ${5000}`);
+ });
