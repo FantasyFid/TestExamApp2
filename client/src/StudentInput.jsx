@@ -2,7 +2,8 @@ import { useState } from "react";
 import DatePicker from 'react-date-picker';
 import info from './info'
 
-function StudentInput(props) {
+// Компонент, отвечающий за добавление новых студентов
+function StudentInput() {
     const [name, setName] = useState('');
     const [sername, setSername] = useState('');
     const [patronymic, setPatronymic] = useState('');
@@ -10,9 +11,7 @@ function StudentInput(props) {
     const [group, setGroup] = useState('');
     const [alertingInformation, setAlertingInformation] = useState([]);
 
-    function handleDateChange(date) {
-        setDate(date);
-    }
+    // Проверяем заполнение всех полей и отправляем на сервер json c объектом studentObject
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -40,9 +39,9 @@ function StudentInput(props) {
                 body: JSON.stringify(studentObject)
             })
             .catch((err) => {
-                setAlertingInformation(['An error occured: ' + err]);
-                setTimeout(1000, () => setAlertingInformation([]));  
+                console.log('Failed to insert new student: ' + err)
             });
+        } else {
             setAlertingInformation(alertingInfo);
         }
     }
@@ -63,7 +62,7 @@ function StudentInput(props) {
             </label> 
             <label>
                 <div>Enter your Date of Birth:</div>
-                <DatePicker onChange={handleDateChange} value={date} disableCalendar={true} classList="date-picker"/>
+                <DatePicker onChange={(date) => setDate(date)} value={date} disableCalendar={true} classList="date-picker"/>
             </label> 
             <label>
                 <div>Enter your group:</div>

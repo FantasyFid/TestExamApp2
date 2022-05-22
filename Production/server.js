@@ -3,6 +3,7 @@ const express = require("express");
 const sqlite3 = require('sqlite3');
 const cors = require("cors");
 
+// Эта функция создает соединение с базой данных
 function createConnection() {
     let db = new sqlite3.Database('maindb.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
         if (err && err.code == "SQLITE_CANTOPEN") {
@@ -16,6 +17,8 @@ function createConnection() {
     createTable(db);
     return db;
 }
+
+// Эта функция создает базу данных
 function createDatabase() {
     let newdb = new sqlite3.Database('maindb.db', (err) => {
         if (err) {
@@ -25,6 +28,7 @@ function createDatabase() {
     });
 }
 
+// Эта функция создает таблицу, если ее еще нет
 function createTable(newdb) {
     newdb.exec(`
     create table if not exists students (
@@ -42,6 +46,7 @@ function createTable(newdb) {
     );
 }
 
+// Эта функция добавляет нового студента в базу данных
 function insertStudent(db, name, sername, patronymic, date_of_birth, group) {
     db.exec(`
     insert into students (student_name, student_sername, student_patronymic, student_date_of_birth, student_group)
@@ -53,6 +58,7 @@ function insertStudent(db, name, sername, patronymic, date_of_birth, group) {
     });
 }
 
+// Эта функция удаляет студента из базы данных
 function deleteStudent(db, id) {
     db.exec (`
     delete from students
@@ -64,6 +70,7 @@ function deleteStudent(db, id) {
     })
 }
 
+// Эта функция возвращает из базы данных список всех студентов
 function selectAllStudents(db, callback) {
     db.all(`
     select * from students;
@@ -81,8 +88,9 @@ const maindb = createConnection();
 const jsonParser = express.json();
 app.use(cors());
 
-app.use(express.static(__dirname + "../client/build"));
+app.use(express.static(__dirname + "/build"));
 
+// Обрабатываем эндпоинт добавления нового студента
 app.post("/insert", jsonParser, function (request, response) {
     console.log(request.body);
     let user = request.body;
@@ -96,6 +104,7 @@ app.post("/insert", jsonParser, function (request, response) {
     response.sendStatus(200);
 });
 
+// Обрабатываем эндпоинт получения списка всех студентов
 app.get("/update", function (request, response) {
     try {
         selectAllStudents(maindb, (result) => {
@@ -107,6 +116,7 @@ app.get("/update", function (request, response) {
     }
 });
 
+// Обрабатываем эндпоинт удаления студента
 app.post("/delete", jsonParser, function (request, response) {
     console.log(request.body);
     let userId = request.body.id;
@@ -120,6 +130,7 @@ app.post("/delete", jsonParser, function (request, response) {
     response.sendStatus(200);
 });
 
+// Запускаем сервер на порту 5000
 app.listen(5000, () => {
     console.log(`Server running at port ${5000}`);
  });
