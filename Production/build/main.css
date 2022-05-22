@@ -88,9 +88,7 @@ tr {
 }
 .student-delete {
     background-color: rgb(218, 42, 42);
-    padding-bottom: 10px;
 }
-
 .student-list {
     background-color: rgb(19, 170, 100);
 }
@@ -108,15 +106,4 @@ tr {
 }
 .fetch-button:hover {
     cursor: pointer;
-}
-/* Стили для alerting list */
-ul {
-    width: 230px;
-    background-color: white;
-    border-radius: 30px;
-    font-size: 32px;
-    font-weight: 700;
-    color: red;
-    list-style-type: none;
-    margin: 10px;
 }

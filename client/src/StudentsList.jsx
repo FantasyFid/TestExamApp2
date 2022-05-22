@@ -2,8 +2,10 @@
 import { useState, useEffect } from 'react';
 import info from './info';
 
-function StudentsList(props) {
+// Этот компонент отвечает за получение списка студентов с сервера
+function StudentsList() {
 
+    // Эта функция преобразует ISO date в дату формата DD-MM-YYYY
     const formatDate = function (dateStr) {
         let date = new Date(dateStr);
         let formated = date.getDate() + '-' + Number(date.getMonth() + 1) + '-' + date.getFullYear();
@@ -12,6 +14,7 @@ function StudentsList(props) {
 
     const [data, setData] = useState([]);
 
+    // Эта функция получает список студентов с сервера
     const handleClick = function() {
         fetch(info.server + 'update')
             .then((response) => response.json())

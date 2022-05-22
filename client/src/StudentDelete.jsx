@@ -2,10 +2,11 @@
 import { useState } from 'react';
 import info from './info'
 
-function StudentDelete(props) {
+// Компонент, отвечающий за удаление студентов
+function StudentDelete() {
     const [id, setID] = useState('');
-    const [alertingInformation, setAlertingInformation] = useState([]);
 
+    // Отправляем на сервер json c полем id
     const handleSubmit = function(e) {
         e.preventDefault();
         if (id) {
@@ -17,8 +18,7 @@ function StudentDelete(props) {
                 },
                 body: JSON.stringify({id: id})
             }).catch((err) => {
-                setAlertingInformation(['An error occured: ' + err]);
-                setTimeout(1000, () => setAlertingInformation([]));  
+                console.log('Failed to delete: ' + err)
             });
         }
     }
@@ -33,11 +33,6 @@ function StudentDelete(props) {
             <lable>
                 <input type="submit" value="Delete student" className='fetch-button'/>
             </lable>
-            <ul>
-                {
-                    alertingInformation.map((alert) => <li key={alert.toString()}>{alert}</li>)
-                }
-            </ul>
         </form>
     )
 }
